@@ -1,1 +1,1 @@
-noti: node noti.socket.io.js
+web: node noti.socket.io.js
