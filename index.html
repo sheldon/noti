@@ -11,7 +11,8 @@
   <script>
     var socket = io.connect('/');
     socket.on('message', function (data) {
-      console.log(data);
+      var inputfield = jQuery('input[type="text"]:eq(1)');
+      inputfield.val(data[inputfield.attr("name")]);
     });
     jQuery('form').submit(function (e) {
       socket.emit('message', jQuery(this).serializeArray());
