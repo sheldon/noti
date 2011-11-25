@@ -1,8 +1,21 @@
-<script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io.connect('/');
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
-</script>
+<body>
+  <form>
+    <input type="text" name="data" value="">
+    <input type="submit" value="Send Event">
+  </form>
+  <script src='//www.google.com/jsapi' type='text/javascript'></script>
+  <script type='text/javascript'>
+    google.load('jquery', '1.6');
+  </script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io.connect('/');
+    socket.on('message', function (data) {
+      console.log(data);
+    });
+    jQuery('form').submit(function (e) {
+      socket.emit('message', jQuery(this).serializeArray());
+      e.preventDefault();
+    });
+  </script>
+</body>
