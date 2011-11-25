@@ -9,6 +9,7 @@ app.get('/', function (req, res) {
 
 app.get('/message/:message_data', function (req, res) {
   io.sockets.emit('message', req.params.message_data);
+  res.send("sent message: "+req.params.message_data);
 });
 
 io.configure(function () { 
