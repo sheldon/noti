@@ -14,6 +14,6 @@ io.configure(function () {
 
 io.sockets.on('connection', function (socket) {
   socket.on('message', function (data) {
-    io.sockets.emit('message', data);
+    socket.broadcast.emit('message', data);
   });
 });
