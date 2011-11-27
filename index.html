@@ -21,7 +21,7 @@
     });
     jQuery('form').submit(function (e) {
       socket.emit('message', {
-        "room" : jQuery('input[name="room"]:eq(0)').val();
+        "room" : jQuery('input[name="room"]:eq(0)').val(),
         "message" : jQuery('input[name="message"]:eq(0)').val()
       });
       e.preventDefault();
