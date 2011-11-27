@@ -7,9 +7,9 @@ app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');
 });
 
-app.get('/message/:message_data', function (req, res) {
-  io.sockets.emit('message', req.params.message_data);
-  res.send("sent message: "+req.params.message_data);
+app.get('/message/:room/:message', function (req, res) {
+  io.sockets.in(req.params.room).emit('message', req.params.message);
+  res.end();
 });
 
 io.configure(function () { 
@@ -18,7 +18,11 @@ io.configure(function () {
 });
 
 io.sockets.on('connection', function (socket) {
+  socket.on('join', function (data) {
+    if(data.room) socket.join(data.room);
+  });
+  
   socket.on('message', function (data) {
-    socket.broadcast.emit('message', data);
+    if(data.room) socket.broadcast.to(data.room).emit('message', data.message);
   });
 });
