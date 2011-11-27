@@ -8,6 +8,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/message/:room/:message', function (req, res) {
+  console.log(req.params);
   io.sockets.in(req.params.room).emit('message', req.params.message);
   res.end();
 });
