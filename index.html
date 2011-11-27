@@ -16,8 +16,8 @@
     var room;
     socket.on('message', function (data) {
       console.log(data);
-      var inputfield = jQuery('input[type="text"]:eq(0)');
-      inputfield.val(data[0].value);
+      // var inputfield = jQuery('input[type="text"]:eq(0)');
+      // inputfield.val(data[0].value);
     });
     jQuery('form').submit(function (e) {
       socket.emit('message', {
