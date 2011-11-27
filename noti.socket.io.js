@@ -26,6 +26,7 @@ io.sockets.on('connection', function (socket) {
   });
   
   socket.on('message', function (data) {
+    console.log(data);
     if(data.room) socket.broadcast.to(data.room).emit('message', data.message);
   });
 });
