@@ -1,5 +1,10 @@
-var app = require('express').createServer()
-  , io = require('socket.io').listen(app);
+var app = require('express').createServer(),
+    io = require('socket.io').listen(app);
+
+io.configure(function () { 
+  io.set("transports", ["xhr-polling"]); 
+  io.set("polling duration", 10); 
+});
 
 app.listen(process.env.PORT);
 
@@ -11,11 +16,6 @@ app.get('/message/:room/:message', function (req, res) {
   console.log(req.params);
   io.sockets.in(req.params.room).emit('message', req.params.message);
   res.end();
-});
-
-io.configure(function () { 
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
 });
 
 io.sockets.on('connection', function (socket) {
