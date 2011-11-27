@@ -21,6 +21,7 @@ io.configure(function () {
 io.sockets.on('connection', function (socket) {
   socket.on('join', function (data) {
     console.log(data);
+    socket.emit('message', {'message':'message received', 'data':data);
     if(data.room) socket.join(data.room);
   });
   
