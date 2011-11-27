@@ -23,6 +23,7 @@ io.sockets.on('connection', function (socket) {
     console.log(data);
     socket.emit('message', {'message':'message received', 'data':data});
     if(data.room) socket.join(data.room);
+    console.log(io.sockets.manager.rooms);
   });
   
   socket.on('message', function (data) {
