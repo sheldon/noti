@@ -8,6 +8,7 @@ app.get('/message/:room/:message', function (req, res) {
 
 io.sockets.on('connection', function (socket) {
   socket.on('join', function (data) {
+    if(data.oldroom) socket.leave(data.oldroom);
     if(data.room) socket.join(data.room);
   });
   
