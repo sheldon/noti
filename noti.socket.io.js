@@ -12,7 +12,6 @@ app.get('/message/:room/:message', function (req, res) {
 
 io.sockets.on('connection', function (socket) {
   socket.on('join', function (data) {
-    socket.emit('message', {'message':'message received', 'data':data});
     if(data.room) socket.join(data.room);
   });
   
