@@ -1,6 +1,6 @@
 {
   "name": "noti",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "express": "2.5.x",
     "socket.io": "0.8.x"
