@@ -1,10 +1,6 @@
 var app = require('express').createServer(),
     io = require('socket.io').listen(app);
 
-app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
-});
-
 app.get('/message/:room/:message', function (req, res) {
   io.sockets.in(req.params.room).emit('message', req.params.message);
   res.end();
