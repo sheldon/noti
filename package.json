@@ -1,8 +1,12 @@
 {
-  "name": "noti.socket.io",
+  "name": "noti",
   "version": "0.0.1",
   "dependencies": {
-    "express": "",
-    "socket.io": ""
+    "express": "2.5.x",
+    "socket.io": "0.8.x"
+  },
+  "subdomain": "noti",
+  "scripts": {
+    "start": "noti.socket.io.js"
   }
 }
