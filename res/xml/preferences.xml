@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Basic Settings">
+        <EditTextPreference
+                android:name="Passphrase"
+                android:summary="Match this to your desktop passphrase"
+                android:defaultValue=""
+                android:title="Passphrase"
+                android:key="passphrase" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Advanced Settings">
+        <EditTextPreference
+                android:name="Server"
+                android:summary="Relay server"
+                android:defaultValue="http://noti.tmp.sh/"
+                android:title="Server"
+                android:key="server" />
+    </PreferenceCategory>
+</PreferenceScreen>
