@@ -1,5 +1,11 @@
+#!/usr/bin/env node
+
 var app = require('express').createServer(),
     io = require('socket.io').listen(app);
+
+app.get('/', function(req, res){
+    res.send('Hello World');
+});
 
 app.get('/message/:room/:message', function (req, res) {
   io.sockets.in(req.params.room).emit('message', req.params.message);
@@ -17,4 +23,4 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-app.listen(81);
+app.listen(8080);

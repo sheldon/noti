@@ -1,12 +1,50 @@
 {
   "name": "noti",
-  "version": "0.0.3",
+  "version": "0.0.4-3",
+  "author": {
+    "name": "Sheldon Els",
+    "email": "sheldon.els@gmail.com"
+  },
+  "description": "basic websocket comms server",
+  "main": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sheldon/noti.git"
+  },
+  "keywords": [
+    "nodeapps"
+  ],
+  "homepage": "https://github.com/sheldon/noti",
+  "scripts": {
+    "start": "node ./bin/server"
+  },
+  "contributors": [
+    {
+      "name": "Sheldon Els",
+      "email": "sheldon.els@gmail.com"
+    }
+  ],
   "dependencies": {
     "express": "2.5.x",
     "socket.io": "0.8.x"
   },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=0.4"
+  },
+  "bugs": {
+    "url": "https://github.com/sheldon/noti/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": ""
+    }
+  ],
+  "analyze": false,
+  "optionalDependencies": {},
   "subdomain": "noti",
-  "scripts": {
-    "start": "noti.socket.io.js"
-  }
+  "domains": [
+    "noti.tmp.sh"
+  ]
 }
