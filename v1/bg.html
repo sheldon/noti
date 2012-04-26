@@ -1,0 +1,30 @@
+<script src="socket.io.min.js"></script>
+<script>
+  var server;
+  var socket;
+  function init(data){
+    function passphrase(){ socket.emit('join', {'room' : data["passphrase"], "oldroom" : data["oldpassphrase"]}); }
+    
+    if(server != data['server']){
+      server = data['server'];
+      socket = io.connect(server);
+      socket.on('message', function (data) {
+        if(data == "null") data = "Number Unavailable";
+        var noti = webkitNotifications.createNotification(chrome.extension.getURL("icon.png"), "Incoming Call", data);
+        noti.show();
+        var timeout = parseFloat(localStorage["timeout"]);
+        if(timeout) setTimeout(function(){ noti.cancel(); }, timeout * 1000);
+      });
+      passphrase();
+    }else if(data["passphrase"] != data["oldpassphrase"]) passphrase();
+  };
+  
+  if(!localStorage["timeout"]) localStorage["timeout"] = 0;
+  if(!localStorage["server"]) localStorage["server"] = "http://noti.tmp.sh/";
+  if(!localStorage["passphrase"]){
+    localStorage["passphrase"] = "";
+    for(x=0;x<6;x++) localStorage["passphrase"] += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".charAt(Math.floor(Math.random() * 62));
+  }
+  
+  init(localStorage);
+</script>

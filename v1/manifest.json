@@ -1,0 +1,12 @@
+{
+  "name": "NotifyDesktop",
+  "version": "1",
+  "description": "Notifications from your phone to your desktop",
+  "icons": { "128": "icon.png" },
+  "background_page": "bg.html",
+  "permissions": [
+    "notifications",
+    "http://noti.tmp.sh:81"
+  ],
+  "options_page": "options.html"
+}

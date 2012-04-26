@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Notify Desktop Options</h2>
+  <form id="options" onsubmit="return save()">
+    <label for="passphrase">Passphrase: </label><input type="text" name="passphrase" value="" id="passphrase">
+    <label for="timeout">Timeout (in seconds): </label><input type="text" name="timeout" value="" id="timeout">
+    <label for="server">Server URL: </label><input type="text" name="server" value="" id="server">
+    <input type="submit" name="submit" value="Save" id="submit">
+  </form>
+  <script>
+    function save(){
+      localStorage["oldpassphrase"] = localStorage["passphrase"];
+      localStorage["passphrase"] = document.getElementById("passphrase").value;
+      localStorage["timeout"] = document.getElementById("timeout").value;
+      localStorage["server"] = document.getElementById("server").value;
+      chrome.extension.getBackgroundPage().init(localStorage);
+      return false;
+    }
+    
+    window.onload = function(){
+      document.getElementById("passphrase").value = localStorage["passphrase"];
+      document.getElementById("timeout").value = localStorage["timeout"];
+      document.getElementById("server").value = localStorage["server"];
+    }
+  </script>
+</body>
+</html>
