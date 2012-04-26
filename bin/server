@@ -3,11 +3,11 @@
 var app = require('express').createServer(),
     io = require('socket.io').listen(app);
 
-app.get('/', function(req, res){
-    res.send('Hello World');
+app.configure(function(){
+  app.use(express.static(__dirname + '/public'));
 });
 
-app.get('/message/:room/:message', function (req, res) {
+app.all('/message/:room/:message', function (req, res) {
   io.sockets.in(req.params.room).emit('message', req.params.message);
   res.end();
 });
