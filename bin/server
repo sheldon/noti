@@ -14,6 +14,11 @@ app.configure(function(){
   app.use(everyauth.middleware());
 });
 
+app.get('/', function (req, res) {
+  console.log(req.user);
+  res.send('hello world');
+});
+
 app.get('/message/:room/:message', function (req, res) {
   io.sockets.in(req.params.room).emit('message', req.params.message);
   res.end();
@@ -51,7 +56,9 @@ everyauth.google
     // Promises are created via
     //     var promise = this.Promise();
   })
-  .redirectPath('/');
+  .redirectPath('/')
+  .entryPath('/auth/google')
+  .callbackPath('/auth/google/callback');
 
 everyauth.helpExpress(app);
 
