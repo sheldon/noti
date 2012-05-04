@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
-var app = require('express').createServer(),
+var express = require('express'),
+    app = express.createServer(),
     io = require('socket.io').listen(app);
 
 app.configure(function(){
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname + '/../public'));
 });
 
-app.all('/message/:room/:message', function (req, res) {
+app.get('/message/:room/:message', function (req, res) {
   io.sockets.in(req.params.room).emit('message', req.params.message);
   res.end();
 });
