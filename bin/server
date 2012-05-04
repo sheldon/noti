@@ -2,10 +2,16 @@
 
 var express = require('express'),
     app = express.createServer(),
-    io = require('socket.io').listen(app);
+    io = require('socket.io').listen(app),
+    everyauth = require('everyauth'),
+    conf = require('../conf');
 
 app.configure(function(){
+  app.use(express.bodyParser());
   app.use(express.static(__dirname + '/../public'));
+  app.use(express.cookieParser());
+  app.use(express.session({secret:"want above pig start"}));
+  app.use(everyauth.middleware());
 });
 
 app.get('/message/:room/:message', function (req, res) {
@@ -23,5 +29,30 @@ io.sockets.on('connection', function (socket) {
     if(data.room) io.sockets.in(data.room).emit('message', data.message);
   });
 });
+
+everyauth.google
+  .appId(conf.google.clientId)
+  .appSecret(conf.google.clientSecret)
+  .scope('https://www.googleapis.com/auth/userinfo.email')
+  .handleAuthCallbackError( function (req, res) {
+    // If a user denies your app, Google will redirect the user to
+    // /auth/facebook/callback?error=access_denied
+    // This configurable route handler defines how you want to respond to
+    // that.
+    // If you do not configure this, everyauth renders a default fallback
+    // view notifying the user that their authentication failed and why.
+  })
+  .findOrCreateUser( function (session, accessToken, accessTokenExtra, googleUserMetadata) {
+    googleUserMetadata.refreshToken = accessTokenExtra.refresh_token;
+    googleUserMetadata.expiresIn = accessTokenExtra.expires_in;
+    return googleUserMetadata;
+    // find or create user logic goes here
+    // Return a user or Promise that promises a user
+    // Promises are created via
+    //     var promise = this.Promise();
+  })
+  .redirectPath('/');
+
+everyauth.helpExpress(app);
 
 app.listen(8080);
