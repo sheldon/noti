@@ -1,51 +1,29 @@
 {
   "name": "noti",
   "version": "0.0.9",
+  "description": "Get the same notifications on all your devices.",
   "author": {
     "name": "Sheldon Els",
     "email": "sheldon.els@gmail.com"
   },
-  "description": "basic websocket comms server",
-  "main": "",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/sheldon/noti.git"
-  },
-  "keywords": [
-    "nodeapps"
-  ],
-  "homepage": "https://github.com/sheldon/noti",
+  "homepage": "http://noti.jit.su",
+  "subdomain": "noti",
   "scripts": {
     "start": "node index.js"
   },
-  "contributors": [
-    {
-      "name": "Sheldon Els",
-      "email": "sheldon.els@gmail.com"
-    }
-  ],
+  "engines": {
+    "node": "0.6.x"
+  },
   "dependencies": {
     "express": "2.5.x",
     "socket.io": "0.9.x",
     "everyauth": "0.2.x"
   },
-  "devDependencies": {},
-  "engines": {
-    "node": ">=0.4"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sheldon/noti.git"
   },
   "bugs": {
     "url": "https://github.com/sheldon/noti/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": ""
-    }
-  ],
-  "analyze": false,
-  "optionalDependencies": {},
-  "subdomain": "noti",
-  "domains": [
-    "noti.tmp.sh"
-  ]
+  }
 }
