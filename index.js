@@ -4,7 +4,7 @@ var express = require('express'),
     app = express.createServer(),
     io = require('socket.io').listen(app),
     everyauth = require('everyauth'),
-    conf = require('../conf');
+    conf = require('./conf.js');
 
 everyauth.google
   .appId(conf.google.clientId)
@@ -14,6 +14,7 @@ everyauth.google
     googleUserMetadata.refreshToken = accessTokenExtra.refresh_token;
     googleUserMetadata.expiresIn = accessTokenExtra.expires_in;
     googleUserMetadata.id = 1;
+    console.log(googleUserMetadata);
     return googleUserMetadata;
   })
   .redirectPath('/');
@@ -21,7 +22,7 @@ everyauth.google
 everyauth.helpExpress(app);
 
 app.configure(function(){
-  app.use(express.static(__dirname + '/../public'));
+  app.use(express.static(__dirname + '/public'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser());

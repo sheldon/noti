@@ -1,6 +1,6 @@
 {
   "name": "noti",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": {
     "name": "Sheldon Els",
     "email": "sheldon.els@gmail.com"
@@ -16,7 +16,7 @@
   ],
   "homepage": "https://github.com/sheldon/noti",
   "scripts": {
-    "start": "node ./bin/server"
+    "start": "node index.js"
   },
   "contributors": [
     {
